@@ -1,6 +1,8 @@
-import sql from 'better-sqlite3';
+import sql from "better-sqlite3";
 
-const db = new sql('posts.db');
+import { INewPost } from "@/@types/new-post";
+
+const db = new sql("posts.db");
 
 function initDb() {
   db.exec(`
@@ -30,7 +32,7 @@ function initDb() {
     )`);
 
   // Creating two dummy users if they don't exist already
-  const stmt = db.prepare('SELECT COUNT(*) AS count FROM users');
+  const stmt = db.prepare("SELECT COUNT(*) AS count FROM users");
 
   if (stmt.get().count === 0) {
     db.exec(`
@@ -48,10 +50,10 @@ function initDb() {
 initDb();
 
 export async function getPosts(maxNumber) {
-  let limitClause = '';
+  let limitClause = "";
 
   if (maxNumber) {
-    limitClause = 'LIMIT ?';
+    limitClause = "LIMIT ?";
   }
 
   const stmt = db.prepare(`
@@ -67,7 +69,7 @@ export async function getPosts(maxNumber) {
   return maxNumber ? stmt.all(maxNumber) : stmt.all();
 }
 
-export async function storePost(post) {
+export async function storePost(post: INewPost) {
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);
