@@ -1,7 +1,5 @@
 import sql from "better-sqlite3";
 
-import { INewPost } from "@/@types/new-post";
-
 const db = new sql("posts.db");
 
 function initDb() {
@@ -69,7 +67,7 @@ export async function getPosts(maxNumber) {
   return maxNumber ? stmt.all(maxNumber) : stmt.all();
 }
 
-export async function storePost(post: INewPost) {
+export async function storePost(post) {
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);
