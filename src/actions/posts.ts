@@ -50,6 +50,7 @@ export async function createPost(_: any, formData: FormData) {
     userId: 1,
   });
 
+  revalidatePath("/", "layout");
   redirect("/feed");
 }
 

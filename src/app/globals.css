@@ -174,7 +174,7 @@ main {
 }
 
 .post header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -183,6 +183,7 @@ main {
 .post header p {
   font-size: 0.9rem;
   color: #b1a9ac;
+  margin-top: 0.5rem;
 }
 
 .like-button {

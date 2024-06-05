@@ -26,7 +26,7 @@ export default function Post({ post, action }: PostProps) {
           <div>
             <h2>{post.title}</h2>
             <p>
-              Shared by {post.userFirstName} on
+              Shared by {post.userFirstName} on{" "}
               <time dateTime={post.createdAt}>
                 {formatDate(post.createdAt)}
               </time>
