@@ -1,5 +1,4 @@
 import { formatDate } from "@/lib/format";
-import { togglePostLikeStatus } from "@/actions/posts";
 
 import LikeButton from "./like-icon";
 
@@ -13,9 +12,10 @@ export interface PostProps {
     content: string;
     isLiked?: boolean;
   };
+  action: (postId: number) => void;
 }
 
-export default function Post({ post }: PostProps) {
+export default function Post({ post, action }: PostProps) {
   return (
     <article className="post">
       <div className="post-image">
@@ -34,7 +34,7 @@ export default function Post({ post }: PostProps) {
           </div>
           <div>
             <form
-              action={togglePostLikeStatus.bind(null, post.id)}
+              action={action.bind(null, post.id)}
               className={post.isLiked ? "liked" : ""}
             >
               <LikeButton />
