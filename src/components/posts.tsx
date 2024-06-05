@@ -2,7 +2,7 @@ import Post from "./post";
 
 export interface PostsProps {
   posts: {
-    id: string;
+    id: number;
     image: string;
     title: string;
     userFirstName: string;
