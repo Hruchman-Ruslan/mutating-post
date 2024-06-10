@@ -1,3 +1,5 @@
+import Image, { ImageLoaderProps } from "next/image";
+
 import { formatDate } from "@/lib/format";
 
 import LikeButton from "./like-icon";
@@ -15,11 +17,26 @@ export interface PostProps {
   action: (postId: number) => void;
 }
 
+function imageLoader({ src, quality }: ImageLoaderProps) {
+  const urlStart = src.split("upload/")[0];
+  const urlEnd = src.split("upload/")[1];
+  const transformations = `w_200,q_${quality}`;
+
+  return `${urlStart}upload/${transformations}/${urlEnd}`;
+}
+
 export default function Post({ post, action }: PostProps) {
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        <Image
+          src={post.image}
+          loader={imageLoader}
+          width={200}
+          height={120}
+          alt={post.title}
+          quality={50}
+        />
       </div>
       <div className="post-content">
         <header>
