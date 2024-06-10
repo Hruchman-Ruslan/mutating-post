@@ -3,6 +3,7 @@
 import { useOptimistic } from "react";
 
 import Post from "./post";
+
 import { togglePostLikeStatus } from "@/actions/posts";
 
 export interface PostsProps {
