@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { ImageLoaderProps } from "next/image";
 
 import { formatDate } from "@/lib/format";
 
@@ -17,11 +17,26 @@ export interface PostProps {
   action: (postId: number) => void;
 }
 
+function imageLoader({ src, quality }: ImageLoaderProps) {
+  const urlStart = src.split("upload/")[0];
+  const urlEnd = src.split("upload/")[1];
+  const transformations = `w_200,q_${quality}`;
+
+  return `${urlStart}upload/${transformations}/${urlEnd}`;
+}
+
 export default function Post({ post, action }: PostProps) {
   return (
     <article className="post">
       <div className="post-image">
-        <Image src={post.image} fill alt={post.title} />
+        <Image
+          src={post.image}
+          loader={imageLoader}
+          width={200}
+          height={120}
+          alt={post.title}
+          quality={50}
+        />
       </div>
       <div className="post-content">
         <header>
