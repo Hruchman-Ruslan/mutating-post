@@ -13,6 +13,7 @@ export default function Header({}: HeaderProps) {
           src={logo}
           width={100}
           height={100}
+          priority
           // sizes="10vw"
           alt="Mobile phone with posts feed on it"
         />
